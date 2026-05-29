@@ -2,7 +2,7 @@
 
 Dispositivo de leitura de dados OBD-II desenvolvido pela [TechGears](https://techgears.app), clube universitário do [Inteli](https://www.inteli.edu.br). Conecta à porta de diagnóstico de qualquer carro e expõe dados do motor em tempo real num dashboard web acessível pelo celular, sem instalar nenhum aplicativo.
 
-> Documentação completa em **[docs.techgears.app/obd-ii-reader](https://docs.techgears.app/obd-ii-reader/)**
+> Documentação completa em **[docs.techgears.app/obd-ii-reader](https://docs.techgears.app/obd-II_reader/)**
 
 ## Visão Geral
 
@@ -41,7 +41,7 @@ npm install
 npm run start
 ```
 
-O site abre em `http://localhost:3000/obd-ii-reader/`.
+O site abre em `http://localhost:3000/obd-II_reader/`.
 
 ## Pipelines de CI
 

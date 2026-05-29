@@ -16,7 +16,7 @@ const config: Config = {
   },
 
   url: 'https://docs.techgears.app',
-  baseUrl: '/obd-ii-reader/',
+  baseUrl: '/obd-II_reader/',
 
   organizationName: 'TechGearsInteli',
   projectName: 'obd-II_reader',

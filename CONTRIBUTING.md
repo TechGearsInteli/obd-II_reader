@@ -48,4 +48,4 @@ npm install
 npm run start
 ```
 
-O site abre em `http://localhost:3000/obd-ii-reader/`.
+O site abre em `http://localhost:3000/obd-II_reader/`.
