@@ -10,7 +10,7 @@ sidebar_position: 3
 
 **Responsável:** Equipe Techgears
 
-**Objetivo:** Centralizar o conhecimento sobre o funcionamento do padrão OBD-II, a pinagem do conector DLC, a arquitetura de ECUs, o protocolo CAN Bus e a interface com o módulo ELM327 — servindo como material de referência para qualquer integrante do time, inclusive quem nunca teve contato com o assunto.
+**Objetivo:** Centralizar o conhecimento sobre o funcionamento do padrão OBD-II, a pinagem do conector DLC, a arquitetura de ECUs, o protocolo CAN Bus e a interface com o módulo ELM327, servindo como material de referência para qualquer integrante do time, inclusive quem nunca teve contato com o assunto.
 
 **Escopo:** Fundamentos de OBD-II, CAN Bus, DTCs, PIDs e uso prático do módulo ELM327.
 
@@ -18,23 +18,23 @@ sidebar_position: 3
 
 ### 1.1 O que é o OBD-II
 
-O **OBD-II** (*On-Board Diagnostics II*, ou "Diagnóstico a Bordo II") é um padrão industrial de diagnóstico veicular. De forma geral, ele funciona recebendo impulsos elétricos gerados pelos diversos sistemas do carro, identificando o que cada um representa e convertendo-os em informações legíveis sobre as condições reais do veículo.
+O **OBD-II** (_On-Board Diagnostics II_, ou "Diagnóstico a Bordo II") é um padrão industrial de diagnóstico veicular. De forma geral, ele funciona recebendo impulsos elétricos gerados pelos diversos sistemas do carro, identificando o que cada um representa e convertendo-os em informações legíveis sobre as condições reais do veículo.
 
-Na prática, o OBD-II é a ponte entre a eletrônica interna do carro — sensores, módulos e fiação — e uma pessoa ou sistema externo que precisa entender o que está acontecendo com o veículo, seja um mecânico com um scanner de bancada, seja um microcontrolador embarcado em um projeto próprio, como um dashboard veicular.
+Na prática, o OBD-II é a ponte entre a eletrônica interna do carro (sensores, módulos e fiação) e uma pessoa ou sistema externo que precisa entender o que está acontecendo com o veículo, seja um mecânico com um scanner de bancada, seja um microcontrolador embarcado em um projeto próprio, como um dashboard veicular.
 
 ### 1.2 Histórico e Evolução
 
 O dispositivo surgiu inicialmente com a proposta de controlar e regular a emissão de gases poluentes decorrentes de falhas em sistemas do motor. A ideia original era puramente ambiental: garantir que problemas mecânicos que aumentassem a poluição fossem identificados rapidamente.
 
-Com o tempo, o padrão foi sendo atualizado e passou a identificar não somente falhas voltadas à poluição, mas problemas de praticamente qualquer natureza no veículo — elétricos, mecânicos ou de comunicação entre módulos. Desde 1996, nos Estados Unidos, todo veículo de passeio é obrigado a possuir uma porta OBD-II compatível, e o padrão se popularizou mundialmente nos anos seguintes, tornando-se uma ferramenta universal de diagnóstico a bordo.
+Com o tempo, o padrão foi sendo atualizado e passou a identificar não somente falhas voltadas à poluição, mas problemas de praticamente qualquer natureza no veículo (elétricos, mecânicos ou de comunicação entre módulos). Desde 1996, nos Estados Unidos, todo veículo de passeio é obrigado a possuir uma porta OBD-II compatível, e o padrão se popularizou mundialmente nos anos seguintes, tornando-se uma ferramenta universal de diagnóstico a bordo.
 
 ## 2. Conector de Link de Dados (DLC)
 
 ### 2.1 Visão Geral
 
-O dispositivo exige uma conexão física de **16 pinos**, com um esquema padrão apresentado nas imagens desta seção. O **DLC** (*Data Link Connector*, ou "Conector de Link de Dados") é a porta física de 16 pinos do carro.
+O dispositivo exige uma conexão física de **16 pinos**, com um esquema padrão apresentado nas imagens desta seção. O **DLC** (_Data Link Connector_, ou "Conector de Link de Dados") é a porta física de 16 pinos do carro.
 
-Embora o formato do plugue seja idêntico em todos os carros produzidos após 1996, os pinos internos efetivamente conectados variam dependendo do protocolo de comunicação que cada montadora escolheu usar. Ou seja: o encaixe é sempre o mesmo, mas nem todo pino carrega sinal em todo veículo — por isso, saber identificar quais pinos estão ativos é o primeiro passo de qualquer diagnóstico.
+Embora o formato do plugue seja idêntico em todos os carros produzidos após 1996, os pinos internos efetivamente conectados variam dependendo do protocolo de comunicação que cada montadora escolheu usar. Ou seja: o encaixe é sempre o mesmo, mas nem todo pino carrega sinal em todo veículo, por isso, saber identificar quais pinos estão ativos é o primeiro passo de qualquer diagnóstico.
 
 ### 2.2 Localização no Veículo
 
@@ -58,24 +58,24 @@ A tabela a seguir apresenta a pinagem oficial do conector segundo a norma **SAE 
 
 <small><strong>Quadro 1 - Pinagem padrão do conector DLC</strong></small>
 
-| **Pino** | **Descrição** | **Função / Protocolo** |
-| --- | --- | --- |
-| 1 | OEM / Fabricante | Variável (ex.: CAN de baixa velocidade em algumas montadoras) |
-| 2 | J1850 Bus+ | Linha positiva do protocolo SAE J1850 (PWM/VPW) |
-| 3 | OEM / Fabricante | Conexões específicas de fábrica / linhas de diagnóstico adicionais |
-| 4 | Chassis Ground | Aterramento do chassi do veículo |
-| 5 | Signal Ground | Aterramento do sinal lógico de comunicação |
-| 6 | CAN High | Linha de alta velocidade da rede CAN (ISO 15765-4) |
-| 7 | K-Line | Linha K para diagnóstico (ISO 9141-2 / ISO 14230-4) |
-| 8 | OEM / Fabricante | Uso específico (ex.: verificação de sincronismo / ignição) |
-| 9 | OEM / Fabricante | Uso específico (ex.: tacômetro / ECM) |
-| 10 | J1850 Bus- | Linha negativa do protocolo SAE J1850 (apenas PWM) |
-| 11 | OEM / Fabricante | Uso específico (ex.: atuador do freio / ABS) |
-| 12 | OEM / Fabricante | Variável (ex.: CAN secundária do chassi +) |
-| 13 | OEM / Fabricante | Variável (ex.: CAN secundária do chassi -) |
-| 14 | CAN Low | Linha de baixa velocidade da rede CAN (ISO 15765-4 / SAE J2284) |
-| 15 | L-Line | Linha L para ativação do diagnóstico (ISO 9141-2 / ISO 14230-4) |
-| 16 | Battery Power (B+) | Alimentação permanente direto da bateria (+12V) |
+| **Pino** | **Descrição**      | **Função / Protocolo**                                             |
+| -------- | ------------------ | ------------------------------------------------------------------ |
+| 1        | OEM / Fabricante   | Variável (ex.: CAN de baixa velocidade em algumas montadoras)      |
+| 2        | J1850 Bus+         | Linha positiva do protocolo SAE J1850 (PWM/VPW)                    |
+| 3        | OEM / Fabricante   | Conexões específicas de fábrica / linhas de diagnóstico adicionais |
+| 4        | Chassis Ground     | Aterramento do chassi do veículo                                   |
+| 5        | Signal Ground      | Aterramento do sinal lógico de comunicação                         |
+| 6        | CAN High           | Linha de alta velocidade da rede CAN (ISO 15765-4)                 |
+| 7        | K-Line             | Linha K para diagnóstico (ISO 9141-2 / ISO 14230-4)                |
+| 8        | OEM / Fabricante   | Uso específico (ex.: verificação de sincronismo / ignição)         |
+| 9        | OEM / Fabricante   | Uso específico (ex.: tacômetro / ECM)                              |
+| 10       | J1850 Bus-         | Linha negativa do protocolo SAE J1850 (apenas PWM)                 |
+| 11       | OEM / Fabricante   | Uso específico (ex.: atuador do freio / ABS)                       |
+| 12       | OEM / Fabricante   | Variável (ex.: CAN secundária do chassi +)                         |
+| 13       | OEM / Fabricante   | Variável (ex.: CAN secundária do chassi -)                         |
+| 14       | CAN Low            | Linha de baixa velocidade da rede CAN (ISO 15765-4 / SAE J2284)    |
+| 15       | L-Line             | Linha L para ativação do diagnóstico (ISO 9141-2 / ISO 14230-4)    |
+| 16       | Battery Power (B+) | Alimentação permanente direto da bateria (+12V)                    |
 
 <small>Fonte: elaborado pela equipe Techgears.</small>
 
@@ -103,7 +103,7 @@ Para a grande maioria dos projetos com rede CAN (a mais comum em carros atuais),
 </div>
 
 :::tip Dica de bancada
-Os pinos fundamentais para ligar qualquer scanner genérico são o 4 e 5 (aterramento), o 16 (alimentação de +12V) e o par de comunicação da rede do veículo — geralmente 6 e 14 para carros modernos com rede CAN.
+Os pinos fundamentais para ligar qualquer scanner genérico são o 4 e 5 (aterramento), o 16 (alimentação de +12V) e o par de comunicação da rede do veículo, geralmente 6 e 14 para carros modernos com rede CAN.
 :::
 
 ### 2.5 Exemplos de Pinagem em Veículos Reais
@@ -134,7 +134,7 @@ Como cada montadora pode usar pinos diferentes para funções específicas, é �
 
 ### 3.1 Unidades de Controle Eletrônico (ECUs)
 
-As **ECUs** (*Electronic Control Units*, ou Unidades de Controle Eletrônico) podem se referir a um único módulo ou a um conjunto de módulos. Elas são o "cérebro" do veículo, monitorando e controlando diversas funções. Em carros novos, são compostas por microcontroladores interconectados em rede, cada um responsável por um domínio específico do veículo. Os tipos mais comuns incluem:
+As **ECUs** (_Electronic Control Units_, ou Unidades de Controle Eletrônico) podem se referir a um único módulo ou a um conjunto de módulos. Elas são o "cérebro" do veículo, monitorando e controlando diversas funções. Em carros novos, são compostas por microcontroladores interconectados em rede, cada um responsável por um domínio específico do veículo. Os tipos mais comuns incluem:
 
 - **ECM — Módulo de Controle do Motor (Engine Control Module):** controla os atuadores do motor, afetando aspectos como o ponto de ignição, a relação ar/combustível e a marcha lenta.
 
@@ -150,7 +150,7 @@ As **ECUs** (*Electronic Control Units*, ou Unidades de Controle Eletrônico) po
 
 ### 3.2 Do Sensor ao Scanner: o Fluxo de Comunicação
 
-As ECUs convertem os sinais analógicos e físicos captados pelos sensores em bits por meio do **Conversor Analógico-Digital (ADC)**. Esses dados são então enviados a outras ECUs por meio do **CAN Bus** — o sistema que efetua a comunicação entre as ECUs, empacotando a informação em pacotes chamados Frames CAN (contendo dados como ID, conteúdo da mensagem e CRC, detalhados na seção 4).
+As ECUs convertem os sinais analógicos e físicos captados pelos sensores em bits por meio do **Conversor Analógico-Digital (ADC)**. Esses dados são então enviados a outras ECUs por meio do **CAN Bus**, o sistema que efetua a comunicação entre as ECUs, empacotando a informação em pacotes chamados Frames CAN (contendo dados como ID, conteúdo da mensagem e CRC, detalhados na seção 4).
 
 O fluxo exato do momento em que um scanner é conectado é o seguinte:
 
@@ -199,9 +199,10 @@ Dentro do próprio OBD-II, o processamento de cada requisição segue três etap
         v
 [ Scanner / OBD-Pi ] -> Exibe o valor para leitura
 ```
+
 ### 3.4 Validação de Bit-rate e Protocolo (CAN ID)
 
-Como diferentes montadoras usam velocidades de comunicação (bit-rates) e identificadores diferentes, o dispositivo de diagnóstico precisa primeiro descobrir qual combinação o veículo está usando antes de conseguir conversar com ele. O processo, de forma resumida, consiste em testar cada combinação possível de bit-rate e CAN ID, enviando uma requisição padrão e observando se há resposta válida, erro de comunicação ou nenhuma resposta — repetindo o teste até encontrar a combinação correta.
+Como diferentes montadoras usam velocidades de comunicação (bit-rates) e identificadores diferentes, o dispositivo de diagnóstico precisa primeiro descobrir qual combinação o veículo está usando antes de conseguir conversar com ele. O processo, de forma resumida, consiste em testar cada combinação possível de bit-rate e CAN ID, enviando uma requisição padrão e observando se há resposta válida, erro de comunicação ou nenhuma resposta, repetindo o teste até encontrar a combinação correta.
 
 <div align="center">
 
@@ -219,7 +220,7 @@ Como diferentes montadoras usam velocidades de comunicação (bit-rates) e ident
 
 Imagine uma empresa antiga em que, para o Diretor de Vendas falar com o Diretor de Compras, era necessário passar um fio de telefone exclusivo entre as duas salas. Se o Diretor de Marketing também quisesse falar com eles, seriam necessários mais fios dedicados. Em um carro antigo era assim: cada sensor tinha um fio próprio indo para cada módulo que precisava dele. O chicote elétrico resultante era pesado, complexo e caro.
 
-O **CAN Bus** (*Controller Area Network*) mudou isso. Ele funciona como uma sala de reunião com um microfone central:
+O **CAN Bus** (_Controller Area Network_) mudou isso. Ele funciona como uma sala de reunião com um microfone central:
 
 - Todos os módulos do carro (injeção, ABS, airbag, painel) estão sentados nessa mesma sala.
 
@@ -251,7 +252,7 @@ Como todos os módulos compartilham os mesmos dois fios, eles não podem falar a
 
 ### 4.3 Resistores de Terminação de 120 Ω
 
-A rede CAN é composta por dois fios trançados: o **CAN High** e o **CAN Low**. Os sinais elétricos viajam por esses fios em altíssima velocidade — até 500 kbps ou mais.
+A rede CAN é composta por dois fios trançados: o **CAN High** e o **CAN Low**. Os sinais elétricos viajam por esses fios em altíssima velocidade (até 500 kbps ou mais).
 
 Quando a onda elétrica chega ao fim do fio físico da rede, se encontrar uma "rua sem saída" (um fio cortado ou aberto), essa onda bate na ponta e reflete de volta pelo fio, gerando eco e interferência (ruído elétrico). Isso corrompe os dados e faz os módulos pararem de se comunicar corretamente.
 
@@ -271,13 +272,13 @@ Atualmente existem cinco protocolos de comunicação homologados pelo padrão OB
 
 <small><strong>Quadro 2 - Protocolos de comunicação homologados pelo padrão OBD-II</strong></small>
 
-| **Protocolo** | **Características** | **Aplicação principal** |
-| --- | --- | --- |
-| ISO 15765-4 (CAN) | Alta velocidade, baseada em barramento de dois fios | Maioria absoluta dos carros atuais (obrigatório desde 2008) |
-| ISO 14230-4 (KWP2000) | Baseado em Linha K, evolução do ISO 9141 | Comum em veículos asiáticos e europeus pós-2003 |
-| ISO 9141-2 | Linha K de comunicação serial simples | Veículos europeus, Chrysler e asiáticos (2000-2004) |
-| SAE J1850 VPW | Modulação por largura de pulso variável (1 fio) | Principalmente veículos antigos da GM |
-| SAE J1850 PWM | Modulação por largura de pulso diferencial (2 fios) | Principalmente veículos antigos da Ford |
+| **Protocolo**         | **Características**                                 | **Aplicação principal**                                     |
+| --------------------- | --------------------------------------------------- | ----------------------------------------------------------- |
+| ISO 15765-4 (CAN)     | Alta velocidade, baseada em barramento de dois fios | Maioria absoluta dos carros atuais (obrigatório desde 2008) |
+| ISO 14230-4 (KWP2000) | Baseado em Linha K, evolução do ISO 9141            | Comum em veículos asiáticos e europeus pós-2003             |
+| ISO 9141-2            | Linha K de comunicação serial simples               | Veículos europeus, Chrysler e asiáticos (2000-2004)         |
+| SAE J1850 VPW         | Modulação por largura de pulso variável (1 fio)     | Principalmente veículos antigos da GM                       |
+| SAE J1850 PWM         | Modulação por largura de pulso diferencial (2 fios) | Principalmente veículos antigos da Ford                     |
 
 <small>Fonte: elaborado pela equipe Techgears.</small>
 
@@ -294,7 +295,7 @@ Atualmente existem cinco protocolos de comunicação homologados pelo padrão OB
 
 ### 5.2 Pinagem Detalhada por Protocolo
 
-O diagrama abaixo consolida, sobre o desenho do conector de 16 pinos, quais pinos correspondem a cada protocolo — útil como referência rápida ao identificar qual rede um veículo específico utiliza.
+O diagrama abaixo consolida, sobre o desenho do conector de 16 pinos, quais pinos correspondem a cada protocolo, útil como referência rápida ao identificar qual rede um veículo específico utiliza.
 
 <div align="center">
 
@@ -308,19 +309,19 @@ O diagrama abaixo consolida, sobre o desenho do conector de 16 pinos, quais pino
 
 ## 6. Códigos de Diagnóstico de Falhas (DTC)
 
-Os **DTCs** (*Diagnostic Trouble Codes*) são usados para descrever onde um problema está ocorrendo no veículo, sendo padronizados pela **SAE** (*Society of Automotive Engineers*). Eles podem ser genéricos (iguais para todo carro) ou específicos de cada fabricante.
+Os **DTCs** (_Diagnostic Trouble Codes_) são usados para descrever onde um problema está ocorrendo no veículo, sendo padronizados pela **SAE** (_Society of Automotive Engineers_). Eles podem ser genéricos (iguais para todo carro) ou específicos de cada fabricante.
 
 Os códigos seguem sempre o formato de 5 dígitos (XXXXX), em que cada posição tem um significado específico:
 
 ### 6.1 1º Dígito (Letra) — Sistema Principal
 
-- **P**xxxx: *Powertrain* (trem de força / motor / câmbio)
+- **P**xxxx: _Powertrain_ (trem de força / motor / câmbio)
 
-- **B**xxxx: *Body* (carroceria / chassi interno / airbag)
+- **B**xxxx: _Body_ (carroceria / chassi interno / airbag)
 
-- **C**xxxx: *Chassis* (chassi externo / freios / suspensão)
+- **C**xxxx: _Chassis_ (chassi externo / freios / suspensão)
 
-- **U**xxxx: *Network* (rede de comunicação entre módulos)
+- **U**xxxx: _Network_ (rede de comunicação entre módulos)
 
 ### 6.2 2º Dígito — Origem da Padronização
 
@@ -332,7 +333,7 @@ Os códigos seguem sempre o formato de 5 dígitos (XXXXX), em que cada posição
 
 - xx**1**xx / xx**2**xx: medição de ar e combustível.
 
-- xx**3**xx: sistema de ignição ou falha de centelha (*misfire*).
+- xx**3**xx: sistema de ignição ou falha de centelha (_misfire_).
 
 - xx**4**xx: sistemas de controle de emissões poluentes.
 
@@ -352,7 +353,7 @@ Os dois últimos dígitos (xx**XX**) identificam a falha específica, variando d
 
 ### 7.1 O que são PIDs
 
-**PID** significa *Parameter Identification* (Identificação de Parâmetro). São códigos hexadecimais de requisição que enviamos para a ECU do veículo pedindo um dado específico.
+**PID** significa _Parameter Identification_ (Identificação de Parâmetro). São códigos hexadecimais de requisição que enviamos para a ECU do veículo pedindo um dado específico.
 
 Quando o scanner (ou o sistema desenvolvido pela equipe) envia um frame CAN perguntando por um PID específico, o carro responde com um pacote contendo bytes de dados "brutos". Cabe ao software da equipe pegar esses bytes e aplicar uma fórmula matemática específica para transformá-los em valores compreensíveis, como RPM, °C ou km/h. Todos os PIDs padrão utilizados neste documento pertencem ao **Modo 01** (mostrar dados atuais do diagnóstico).
 
@@ -364,15 +365,15 @@ Para a Versão 1 (V1) do dashboard da equipe, o foco está nos dados vitais do m
 
 <small><strong>Quadro 3 - PIDs selecionados para o projeto</strong></small>
 
-| **PID (Hex)** | **Parâmetro** | **Unidade** | **Fórmula** | **Prioridade** |
-| --- | --- | --- | --- | --- |
-| 0C | Engine RPM — rotações por minuto do motor | rpm | (256×A + B) / 4 | V1 (Crítica) |
-| 0D | Vehicle Speed — velocidade atual do veículo | km/h | A | V1 (Crítica) |
-| 05 | Engine Coolant Temp — temperatura do fluido de arrefecimento | °C | A − 40 | V1 (Crítica) |
-| 11 | Throttle Position — posição da borboleta de aceleração | % | 100×A / 255 | V1 (Alta) |
-| 0F | Intake Air Temp — temperatura do ar na admissão | °C | A − 40 | V2 (Média) |
-| 04 | Calculated Engine Load — carga calculada do motor | % | 100×A / 255 | V2 (Média) |
-| 2F | Fuel Tank Level Input — nível de combustível do tanque | % | 100×A / 255 | V2 (Média) |
+| **PID (Hex)** | **Parâmetro**                                                | **Unidade** | **Fórmula**     | **Prioridade** |
+| ------------- | ------------------------------------------------------------ | ----------- | --------------- | -------------- |
+| 0C            | Engine RPM — rotações por minuto do motor                    | rpm         | (256×A + B) / 4 | V1 (Crítica)   |
+| 0D            | Vehicle Speed — velocidade atual do veículo                  | km/h        | A               | V1 (Crítica)   |
+| 05            | Engine Coolant Temp — temperatura do fluido de arrefecimento | °C          | A − 40          | V1 (Crítica)   |
+| 11            | Throttle Position — posição da borboleta de aceleração       | %           | 100×A / 255     | V1 (Alta)      |
+| 0F            | Intake Air Temp — temperatura do ar na admissão              | °C          | A − 40          | V2 (Média)     |
+| 04            | Calculated Engine Load — carga calculada do motor            | %           | 100×A / 255     | V2 (Média)     |
+| 2F            | Fuel Tank Level Input — nível de combustível do tanque       | %           | 100×A / 255     | V2 (Média)     |
 
 <small>Fonte: elaborado pela equipe Techgears.</small>
 
@@ -384,7 +385,7 @@ Nas fórmulas acima, A representa o primeiro byte de dados retornado pelo carro,
 
 ### 7.3 Referência Completa de PIDs
 
-A lista completa de PIDs padronizados (muito mais ampla que a tabela V1/V2 acima) está documentada na Wikipedia: [en.wikipedia.org/wiki/OBD-II\_PIDs](https://en.wikipedia.org/wiki/OBD-II_PIDs).
+A lista completa de PIDs padronizados (muito mais ampla que a tabela V1/V2 acima) está documentada na Wikipedia: [en.wikipedia.org/wiki/OBD-II_PIDs](https://en.wikipedia.org/wiki/OBD-II_PIDs).
 
 ## 8. Módulo ELM327
 
@@ -396,10 +397,10 @@ O **ELM327** é um chip/módulo que atua como **tradutor** entre a porta de diag
 
 <small><strong>Quadro 4 - Linguagens utilizadas pelo módulo ELM327</strong></small>
 
-| **Lado** | **Linguagem** |
-| --- | --- |
+| **Lado**           | **Linguagem**                               |
+| ------------------ | ------------------------------------------- |
 | Computador / ESP32 | Comandos AT (texto simples via UART/serial) |
-| Carro | Protocolos OBD-II (CAN, ISO, PWM etc.) |
+| Carro              | Protocolos OBD-II (CAN, ISO, PWM etc.)      |
 
 <small>Fonte: elaborado pela equipe Techgears.</small>
 
@@ -412,6 +413,7 @@ Na prática, você envia um comando AT em texto, e o ELM327 se comunica com o ca
 Enviar:  010C
 Receber: 41 0C 1A F8
 ```
+
 ### 8.2 Configuração da Conexão Serial (UART)
 
 Para interagir diretamente com o módulo usando um terminal de texto (como PuTTY, Arduino Serial Monitor, screen ou minicom), configure os seguintes parâmetros:
@@ -423,17 +425,18 @@ Stop bits:  1
 Parity:     None
 Flow ctrl:  None
 ```
+
 ### 8.3 Terminal Recomendado por Sistema Operacional
 
 <div align="center">
 
 <small><strong>Quadro 5 - Terminais recomendados por sistema operacional</strong></small>
 
-| **Sistema Operacional** | **Terminal recomendado** |
-| --- | --- |
-| Windows | PuTTY ou Arduino IDE (Monitor Serial) |
-| Linux | screen ou minicom |
-| Mac | screen, no Terminal |
+| **Sistema Operacional** | **Terminal recomendado**              |
+| ----------------------- | ------------------------------------- |
+| Windows                 | PuTTY ou Arduino IDE (Monitor Serial) |
+| Linux                   | screen ou minicom                     |
+| Mac                     | screen, no Terminal                   |
 
 <small>Fonte: elaborado pela equipe Techgears.</small>
 
@@ -448,6 +451,7 @@ ls /dev/ttyUSB*     # Linux
 # Conectar
 screen /dev/ttyUSB0 38400
 ```
+
 ### 8.5 Conectando via Terminal — Windows
 
 1. Abrir o **Gerenciador de Dispositivos** e verificar qual porta COM aparece.
@@ -464,13 +468,13 @@ Assim que conectado, envie os comandos abaixo em ordem, um por vez, pressionando
 
 <small><strong>Quadro 6 - Sequência de inicialização do módulo ELM327</strong></small>
 
-| **Comando** | **O que faz** | **Resposta esperada** | **Observação** |
-| --- | --- | --- | --- |
-| ATZ | Reset geral do módulo | ELM327 vX.X (ou similar) | Reinicia o firmware do integrador |
-| ATE0 | Desliga o eco dos comandos | OK | Evita que o ELM327 repita o texto enviado |
-| ATL0 | Desliga line feeds (\n) | OK | Compacta o retorno, limpando quebras de linha |
-| ATH1 | Ativa a exibição de headers | OK | Útil para visualizar os bytes de ID da resposta |
-| ATSP0 | Seleção automática de protocolo | OK | O ELM327 varre os pinos para achar a rede ativa |
+| **Comando** | **O que faz**                   | **Resposta esperada**    | **Observação**                                  |
+| ----------- | ------------------------------- | ------------------------ | ----------------------------------------------- |
+| ATZ         | Reset geral do módulo           | ELM327 vX.X (ou similar) | Reinicia o firmware do integrador               |
+| ATE0        | Desliga o eco dos comandos      | OK                       | Evita que o ELM327 repita o texto enviado       |
+| ATL0        | Desliga line feeds (\n)         | OK                       | Compacta o retorno, limpando quebras de linha   |
+| ATH1        | Ativa a exibição de headers     | OK                       | Útil para visualizar os bytes de ID da resposta |
+| ATSP0       | Seleção automática de protocolo | OK                       | O ELM327 varre os pinos para achar a rede ativa |
 
 <small>Fonte: elaborado pela equipe Techgears.</small>
 
@@ -483,27 +487,27 @@ Com o carro ligado (motor rodando), é possível solicitar diversos parâmetros.
 
 <small><strong>Quadro 7 - Comandos de leitura e diagnóstico</strong></small>
 
-| **Comando** | **Parâmetro / função** | **Bytes** | **Fórmula** | **Exemplo** |
-| --- | --- | --- | --- | --- |
-| 0100 | PIDs suportados (01 a 20) | 4 bytes | Bitmap binário | 41 00 BE 3E 2F 11 |
-| 010C | Rotação do motor (RPM) | 2 bytes (A, B) | (A×256 + B) / 4 | 41 0C 1A F8 → 1726 RPM |
-| 010D | Velocidade do veículo (km/h) | 1 byte (A) | A | 41 0D 32 → 50 km/h |
-| 0105 | Temp. do fluido de arrefecimento (°C) | 1 byte (A) | A − 40 | 41 05 6E → 70°C |
-| 010F | Temp. do ar de admissão / IAT (°C) | 1 byte (A) | A − 40 | 41 0F 46 → 30°C |
-| 0111 | Posição da borboleta de aceleração (%) | 1 byte (A) | A × 100 / 255 | 41 11 33 → 20% |
-| 0104 | Carga calculada do motor (%) | 1 byte (A) | A × 100 / 255 | 41 04 7F → 49,8% |
-| 012F | Nível de combustível do tanque (%) | 1 byte (A) | A × 100 / 255 | 41 2F CC → 80% |
-| 0108 | Pressão absoluta no coletor / MAP (kPa) | 1 byte (A) | A | 41 08 64 → 100 kPa |
-| 03 | Lê códigos de falha armazenados (DTCs) | Variável | Ver seção 6 | Retorna a lista de erros ativos |
-| 04 | Limpa a memória de erros (apaga DTCs) | Nenhuma | — | OK (limpeza bem-sucedida) |
-| 09 02 | Solicita o número VIN do veículo | Variável | Hex → ASCII | Retorna os caracteres alfanuméricos |
+| **Comando** | **Parâmetro / função**                  | **Bytes**      | **Fórmula**     | **Exemplo**                         |
+| ----------- | --------------------------------------- | -------------- | --------------- | ----------------------------------- |
+| 0100        | PIDs suportados (01 a 20)               | 4 bytes        | Bitmap binário  | 41 00 BE 3E 2F 11                   |
+| 010C        | Rotação do motor (RPM)                  | 2 bytes (A, B) | (A×256 + B) / 4 | 41 0C 1A F8 → 1726 RPM              |
+| 010D        | Velocidade do veículo (km/h)            | 1 byte (A)     | A               | 41 0D 32 → 50 km/h                  |
+| 0105        | Temp. do fluido de arrefecimento (°C)   | 1 byte (A)     | A − 40          | 41 05 6E → 70°C                     |
+| 010F        | Temp. do ar de admissão / IAT (°C)      | 1 byte (A)     | A − 40          | 41 0F 46 → 30°C                     |
+| 0111        | Posição da borboleta de aceleração (%)  | 1 byte (A)     | A × 100 / 255   | 41 11 33 → 20%                      |
+| 0104        | Carga calculada do motor (%)            | 1 byte (A)     | A × 100 / 255   | 41 04 7F → 49,8%                    |
+| 012F        | Nível de combustível do tanque (%)      | 1 byte (A)     | A × 100 / 255   | 41 2F CC → 80%                      |
+| 0108        | Pressão absoluta no coletor / MAP (kPa) | 1 byte (A)     | A               | 41 08 64 → 100 kPa                  |
+| 03          | Lê códigos de falha armazenados (DTCs)  | Variável       | Ver seção 6     | Retorna a lista de erros ativos     |
+| 04          | Limpa a memória de erros (apaga DTCs)   | Nenhuma        | —               | OK (limpeza bem-sucedida)           |
+| 09 02       | Solicita o número VIN do veículo        | Variável       | Hex → ASCII     | Retorna os caracteres alfanuméricos |
 
 <small>Fonte: elaborado pela equipe Techgears.</small>
 
 </div>
 
 :::warning Nota importante de programação
-Ao implementar o parser de temperatura (PIDs 0105 e 010F), use variáveis do tipo inteiro com sinal (`int` ou `int8_t`). Como a constante de subtração da fórmula é 40, qualquer byte de resposta menor que `0x28` (40 em decimal) gera um resultado de temperatura negativo — situação comum em testes em climas frios.
+Ao implementar o parser de temperatura (PIDs 0105 e 010F), use variáveis do tipo inteiro com sinal (`int` ou `int8_t`). Como a constante de subtração da fórmula é 40, qualquer byte de resposta menor que `0x28` (40 em decimal) gera um resultado de temperatura negativo, situação comum em testes em climas frios.
 :::
 
 ### 8.8 Tabela de Conversão Hexadecimal → Decimal (Referência Rápida)
@@ -516,6 +520,7 @@ Ao implementar o parser de temperatura (PIDs 0105 e 010F), use variáveis do tip
 0xF8 = 248
 0xFF = 255
 ```
+
 ### 8.9 Fluxo Recomendado para Qualquer Leitura
 
 1. Conectar via serial (38400 baud).
@@ -543,6 +548,7 @@ Requisição enviada: 010C. Resposta recebida:
 ```text
 41 0C 1A F8
 ```
+
 Para converter o resultado 1A F8 para RPM real:
 
 ```text
@@ -552,6 +558,7 @@ RPM = (26 × 256 + 248) / 4
 RPM = 6904 / 4
 RPM = 1726 RPM
 ```
+
 ### 9.2 Exemplo 2 — Cálculo Detalhado Passo a Passo
 
 Enviamos uma requisição para o PID 0C (RPM). O carro responde com o seguinte pacote de dados em formato hexadecimal:
@@ -559,6 +566,7 @@ Enviamos uma requisição para o PID 0C (RPM). O carro responde com o seguinte p
 ```text
 1A F4
 ```
+
 Onde:
 
 - Byte A = 1A (hexadecimal)
@@ -576,6 +584,7 @@ Bytes recebidos: 41  0C  1A  F4
 A = 1A(16) -> (1 × 16) + 10 = 26
 B = F4(16) -> (15 × 16) + 4 = 244
 ```
+
 #### Passo 2 — Aplicar a fórmula do RPM
 
 A fórmula padrão do PID 0C é:
