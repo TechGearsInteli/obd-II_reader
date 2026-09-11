@@ -6,6 +6,8 @@ sidebar_position: 3
 
 # ESP32
 
+<div style={{textAlign: 'justify'}}>
+
 O ESP32 é um microcontrolador programável que tem como diferencial dos outros microcontroladores o Wi-Fi e o Bluetooth. Enquanto em alguns microcontroladores você precisa adicionar um módulo Wi-Fi ou Bluetooth e programá-lo para ter essa função, no ESP32 ele já vem com isso integrado.
 
 Ele conta com um processador dual-core de até 240 MHz, 520 KB de RAM e 4 MB de memória flash — a memória flash é um tipo de memória não volátil que mantém o armazenamento mesmo sem uma fonte de energia. Por ser um microcontrolador muito popular, ele também conta com suporte a vários periféricos adicionais, como câmera, I2C, entre outros.
@@ -28,9 +30,18 @@ Já os **pinos analógicos** foram feitos para ler níveis de sinais variados en
 
 ## Mapeamento de Pinos
 
+<div align="center">
+<small><strong style={{fontSize: '12px'}}>Figura 1 — Pinagem do ESP32</strong></small>
+
 ![pinagem do ESP32](../static/img/pinos_ESP.jpeg)
 
+<small style={{marginTop: '4px', fontSize: '10px'}}>Fonte: Material produzido pelo grupo, 2026.</small>
+</div>
+
 ### Lado Esquerdo
+
+<div align="center">
+<small><strong style={{fontSize: '12px'}}>Quadro 1 — Mapeamento dos pinos do lado esquerdo do ESP32</strong></small>
 
 | Pino Físico | GPIO | Função |
 |:-----------:|------|--------|
@@ -49,7 +60,13 @@ Já os **pinos analógicos** foram feitos para ler níveis de sinais variados en
 | 13 | GPIO14 | ADC2_CH6, Touch6 e sinal SPI MTMS. Entrada e saída digital. |
 | 14 | GPIO12 | ADC2_CH5, Touch5 e sinal SPI MTDI. Entrada e saída digital. |
 
+<small style={{marginTop: '4px', fontSize: '10px'}}>Fonte: Material produzido pelo grupo, 2026.</small>
+</div>
+
 ### Parte Inferior Esquerda
+
+<div align="center">
+<small><strong style={{fontSize: '12px'}}>Quadro 2 — Mapeamento dos pinos da parte inferior esquerda do ESP32</strong></small>
 
 | Pino Físico | GPIO | Função |
 |:-----------:|------|--------|
@@ -59,7 +76,13 @@ Já os **pinos analógicos** foram feitos para ler níveis de sinais variados en
 | 18 | GPIO10 | Conectado à memória flash interna (SD3). Não recomendado para uso geral. |
 | 19 | GPIO11 | Conectado à memória flash interna (CMD). Não recomendado para uso geral. |
 
+<small style={{marginTop: '4px', fontSize: '10px'}}>Fonte: Material produzido pelo grupo, 2026.</small>
+</div>
+
 ### Lado Direito Inferior
+
+<div align="center">
+<small><strong style={{fontSize: '12px'}}>Quadro 3 — Mapeamento dos pinos do lado direito inferior do ESP32</strong></small>
 
 | Pino Físico | GPIO | Função |
 |:-----------:|------|--------|
@@ -71,7 +94,13 @@ Já os **pinos analógicos** foram feitos para ler níveis de sinais variados en
 | 25 | GPIO0 | ADC2_CH1, Touch1 e pino de boot/programação. |
 | 26 | GPIO4 | ADC2_CH0, Touch0. Entrada e saída digital. |
 
+<small style={{marginTop: '4px', fontSize: '10px'}}>Fonte: Material produzido pelo grupo, 2026.</small>
+</div>
+
 ### Lado Direito Superior
+
+<div align="center">
+<small><strong style={{fontSize: '12px'}}>Quadro 4 — Mapeamento dos pinos do lado direito superior do ESP32</strong></small>
 
 | Pino Físico | GPIO | Função |
 |:-----------:|------|--------|
@@ -88,9 +117,15 @@ Já os **pinos analógicos** foram feitos para ler níveis de sinais variados en
 | 37 | — | Reservado. |
 | 38 | GND | Terra (GND). |
 
+<small style={{marginTop: '4px', fontSize: '10px'}}>Fonte: Material produzido pelo grupo, 2026.</small>
+</div>
+
 ---
 
 ## Legenda das Cores do Diagrama
+
+<div align="center">
+<small><strong style={{fontSize: '12px'}}>Quadro 5 — Legenda das cores do diagrama de pinagem do ESP32</strong></small>
 
 | Cor | Significado |
 |-----|-------------|
@@ -104,6 +139,9 @@ Já os **pinos analógicos** foram feitos para ler níveis de sinais variados en
 | 🩷 Rosa | Sensores Touch |
 | 🟠 Laranja | Conversor Digital-Analógico (DAC) |
 | `~` | Suporte a PWM |
+
+<small style={{marginTop: '4px', fontSize: '10px'}}>Fonte: Material produzido pelo grupo, 2026.</small>
+</div>
 
 ---
 
@@ -122,3 +160,5 @@ Já os **pinos analógicos** foram feitos para ler níveis de sinais variados en
 > ℹ️ **GPIO18, GPIO19, GPIO23 e GPIO5** são os pinos padrão para comunicação SPI.
 
 > ℹ️ **GPIO1 e GPIO3** são usados pela porta serial USB para gravação e depuração.
+
+</div>

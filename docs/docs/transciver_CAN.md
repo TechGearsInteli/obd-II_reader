@@ -6,6 +6,8 @@ sidebar_position: 5
 
 # Transceiver CAN Bus
 
+<div style={{textAlign: 'justify'}}>
+
 O CAN (*Controller Area Network*) é um padrão de comunicação feito para permitir que microcontroladores se comuniquem entre si sem a necessidade de uma conexão host. É um protocolo baseado em mensagens, amplamente utilizado em aplicações automotivas.
 
 ---
@@ -23,3 +25,5 @@ Em resumo, ele traduz a linguagem eletrônica do ESP32 para a linguagem elétric
 1. O ELM327 envia pacotes CAN com as informações do carro.
 2. O Transceiver CAN recebe esses pacotes e os traduz para uma linguagem que o ESP32 consegue entender.
 3. Os dados já traduzidos são enviados diretamente ao ESP32.
+
+</div>
